@@ -27,10 +27,10 @@ public class OrderItem extends MoutsTiAbstractEntity<OrderItem> {
 
 	private String description;
 
-    @Column(name = "payment_value")
+	@Column(name = "payment_value")
 	private BigDecimal paymentValue;
 
-    @Column(name = "order_id")
+	@Column(name = "order_id")
 	private String orderId;
 
 }

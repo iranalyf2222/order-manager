@@ -22,7 +22,7 @@ public class MoutsTiAbstractEntity<T> implements Serializable {
 	private Instant createdAt;
 
 	@LastModifiedDate
-    @Column(name = "updated_at")
+	@Column(name = "updated_at")
 	private Instant updatedAt;
 
 }
