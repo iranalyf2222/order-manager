@@ -2,7 +2,7 @@ create table orders (
     id                          varchar(36) primary key,
     external_id                 varchar(36) not null,
     status                      varchar(50) not null,
-    amount                      decimal(10, 2) not null,
+    amount                      decimal(10, 2),
     created_at                  timestamp with time zone,
     updated_at                  timestamp with time zone
 );

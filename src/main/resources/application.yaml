@@ -1,0 +1,28 @@
+server:
+  port: 4200
+spring:
+  application:
+    name: ordermanager
+  datasource:
+    url: jdbc:postgresql://localhost:5432/order-manager
+    username: postgres
+    password: mysecretpassword
+  cloud:
+    stream:
+      function:
+        definition: onOrderCreatedEvent # Nome da função de consumo
+      bindings:
+        onOrderCreatedEvent-in-0:
+          destination: queueorder # Nome da fila
+          group: moutsti-order-manager # Grupo de consumidores (para garantir que a mensagem seja entregue apenas uma vez por grupo)
+      rabbit:
+        bindings:
+          onOrderCreatedEvent-in-0:
+            consumer:
+              auto-bind-dlq: true # Criação automática da Dead Letter Queue (DLQ)
+
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest

@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 
+import static lombok.AccessLevel.PACKAGE;
 import static lombok.AccessLevel.PRIVATE;
 
 @Getter
@@ -19,7 +20,7 @@ import static lombok.AccessLevel.PRIVATE;
 @EqualsAndHashCode
 @Table(name = "order_item")
 @NoArgsConstructor(access = PRIVATE)
-@AllArgsConstructor(access = PRIVATE)
+@AllArgsConstructor(access = PACKAGE, staticName = "of")
 public class OrderItem extends MoutsTiAbstractEntity<OrderItem> {
 
 	@Id
