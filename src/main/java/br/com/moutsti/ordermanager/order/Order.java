@@ -9,7 +9,8 @@ import java.math.BigDecimal;
 import java.util.List;
 
 import static br.com.moutsti.ordermanager.core.MoutsTiIdGenerator.generateId;
-import static br.com.moutsti.ordermanager.order.OrderStatusEnum.RECEIVED;
+import static br.com.moutsti.ordermanager.order.OrderStatusEnum.CALCULATED;
+import static br.com.moutsti.ordermanager.order.OrderStatusEnum.PENDING;
 import static lombok.AccessLevel.PRIVATE;
 
 @Getter
@@ -36,9 +37,14 @@ public class Order extends MoutsTiAbstractEntity<Order> {
 	@JoinColumn(name = "order_id", referencedColumnName = "id")
 	private List<OrderItem> items;
 
+	void calculate() {
+		this.amount = this.items.stream().map(OrderItem::getPaymentValue).reduce(BigDecimal.ZERO, BigDecimal::add);
+		this.status = CALCULATED.name();
+	}
+
 	static Order of(OrderCreatedEvent event) {
 		String orderId = generateId();
-		return Order.builder().id(orderId).externalId(event.getExternalId()).status(RECEIVED.name())
+		return Order.builder().id(orderId).externalId(event.getExternalId()).status(PENDING.name())
 				.items(event.getItems().stream()
 						.map(item -> OrderItem.of(generateId(), item.getDescription(), item.getPaymentValue(), orderId))
 						.toList())
