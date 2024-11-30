@@ -11,13 +11,14 @@ import java.util.List;
 import static br.com.moutsti.ordermanager.core.MoutsTiIdGenerator.generateId;
 import static br.com.moutsti.ordermanager.order.OrderStatusEnum.CALCULATED;
 import static br.com.moutsti.ordermanager.order.OrderStatusEnum.PENDING;
+import static lombok.AccessLevel.PACKAGE;
 import static lombok.AccessLevel.PRIVATE;
 
 @Getter
 @Entity
 @EqualsAndHashCode
 @Table(name = "orders")
-@Builder(access = PRIVATE)
+@Builder(access = PACKAGE)
 @ToString(exclude = "itens")
 @NoArgsConstructor(access = PRIVATE)
 @AllArgsConstructor(access = PRIVATE)
