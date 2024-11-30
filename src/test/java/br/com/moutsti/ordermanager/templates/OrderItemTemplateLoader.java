@@ -22,6 +22,7 @@ public class OrderItemTemplateLoader implements TemplateLoader {
 				add("paymentValue", random(BigDecimal.class, range(500, 10000)));
 				add("createdAt", Instant.now());
 				add("updatedAt", Instant.now());
+				add("orderId", generateId());
 			}
 		});
 	}

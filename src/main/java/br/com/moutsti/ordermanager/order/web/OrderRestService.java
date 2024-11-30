@@ -7,6 +7,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -16,7 +17,7 @@ import static org.springframework.data.domain.Sort.Direction.DESC;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("v1/orders")
+@RequestMapping(value = "v1/orders", produces = MediaType.APPLICATION_JSON_VALUE)
 class OrderRestService {
 
 	private static final String CREATED_AT = "createdAt";

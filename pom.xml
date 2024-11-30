@@ -33,6 +33,7 @@
 		<spring-javaformat.version>0.0.25</spring-javaformat.version>
 		<jacoco-plugin.version>0.8.12</jacoco-plugin.version>
 		<archunit.version>0.23.0</archunit.version>
+		<spring-cloud-contract-plugin.version>3.0.4</spring-cloud-contract-plugin.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -135,6 +136,11 @@
 			<version>${fixture-factory.version}</version>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>io.rest-assured</groupId>
+			<artifactId>spring-mock-mvc</artifactId>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 	<dependencyManagement>
 		<dependencies>
@@ -153,6 +159,21 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-contract-maven-plugin</artifactId>
+				<version>${spring-cloud-contract-plugin.version}</version>
+				<extensions>true</extensions>
+				<configuration>
+					<testFramework>JUNIT5</testFramework>
+					<baseClassMappings>
+						<baseClassMapping>
+							<contractPackageRegex>ordercontractweb</contractPackageRegex>
+							<baseClassFQN>br.com.moutsti.ordermanager.order.web.OrderWebBase</baseClassFQN>
+						</baseClassMapping>
+					</baseClassMappings>
+				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>io.spring.javaformat</groupId>

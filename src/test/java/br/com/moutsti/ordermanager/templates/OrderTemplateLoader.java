@@ -21,7 +21,6 @@ public class OrderTemplateLoader implements TemplateLoader {
 			{
 				add("id", generateId());
 				add("externalId", generateId());
-				add("amount", null);
 				add("status", OrderStatusEnum.PENDING.name());
 				add("items", has(3).of(OrderItem.class, VALID.name()));
 				add("createdAt", Instant.now());
